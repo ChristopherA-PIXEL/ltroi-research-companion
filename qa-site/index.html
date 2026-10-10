@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LTROI Lab | Financial resilience of transport assets</title>
+<meta name="description" content="Interactive, synthetic LTROI v2.3 service-continuity scenario. Not empirical reliability rankings or purchasing advice." />
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:#182a3c;background:#f4f6f5;--navy:#11283d;--orange:#e58b45;--blue:#3a83b7;--muted:#596875;--edge:#dae3e6;--paper:#fff}
+*{box-sizing:border-box}body{margin:0}a{color:#24678e}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #e58b45;outline-offset:2px}
+.top{background:#122b3e;color:white;padding:21px clamp(16px,4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.brand{font-size:14px;font-weight:800;letter-spacing:.13em}.edition{font-size:12px;opacity:.7}.shell{max-width:1350px;margin:auto;padding:26px 18px 54px}.kicker{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;color:#99602d}
+h1{font-weight:800;font-size:clamp(27px,3vw,43px);line-height:1.12;max-width:830px;margin:6px 0 12px}.intro{color:#4e606e;max-width:1000px;line-height:1.55;margin:0 0 20px}.notice{background:#fff5e9;border-left:4px solid #e58b45;padding:12px 17px;border-radius:5px;font-size:13px;line-height:1.5;margin-bottom:20px}
+.dashboard{display:grid;grid-template-columns:minmax(290px,360px) minmax(400px,1fr);gap:18px;align-items:start}
+.panel{background:white;border:1px solid var(--edge);border-radius:14px;box-shadow:0 7px 30px #102b3e0c;overflow:hidden}.pad{padding:20px 22px}.panel h2{font-size:17px;margin:0 0 5px}.sub{font-size:12px;color:var(--muted);margin:0 0 15px;line-height:1.5}fieldset{margin:0 0 10px;padding:0;border:0}legend{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin:14px 0 10px;color:#375569}.control{margin:0 0 16px}label{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:640;margin-bottom:7px}.val{color:#9b5622;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#d77832}.ends{display:flex;justify-content:space-between;color:#74828a;font-size:10px}.btnrow{display:flex;flex-wrap:wrap;gap:8px}.btn{border:1px solid #ccd9dc;background:white;border-radius:8px;padding:10px 12px;font-weight:700;font-size:12px}.btn.primary{color:white;background:var(--navy);border-color:var(--navy)}.btn:hover{filter:brightness(.96)}
+.statgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.stat{padding:14px 12px;border:1px solid var(--edge);border-radius:10px;background:#fcfdfd}.stat small{font-weight:750;color:#63717c;font-size:10px;letter-spacing:.07em;text-transform:uppercase}.stat strong{display:block;font-size:clamp(17px,2vw,26px);margin:7px 0 2px;font-variant-numeric:tabular-nums}.stat p{margin:0;color:#65737b;font-size:11px}.stat.a{border-top:4px solid var(--blue)}.stat.b{border-top:4px solid var(--orange)}.svgwrap{margin:5px 0 10px;border:1px solid #e6edee;border-radius:9px;padding:8px;background:#fbfdfd}svg{width:100%;height:auto;display:block}.legend{display:flex;gap:17px;align-items:center;flex-wrap:wrap;font-size:12px;color:#55646f}.dot{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px}.legend .a{background:var(--blue)}.legend .b{background:var(--orange)}
+.decision{margin:13px 0 3px;border:1px solid #e5e9e9;border-radius:9px;padding:13px 14px;background:#f9fbfb;font-size:13px;line-height:1.5}.muted{color:#65727e}.tiny{font-size:11px;color:#647581;line-height:1.55}.panel hr{height:1px;border:0;background:#e9eeee;margin:19px 0}details{margin-top:14px;border-top:1px solid #e8eded;padding-top:11px}summary{font-size:13px;font-weight:750;cursor:pointer}table{border-collapse:collapse;width:100%;font-size:12px;margin:10px 0 0}th{text-align:left;color:#5f7180;font-size:11px}td,th{padding:9px 6px;border-bottom:1px solid #e5ecef;font-variant-numeric:tabular-nums}td:nth-child(n+2),th:nth-child(n+2){text-align:right}
+.footergrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.field{width:100%;border:1px solid #cfdadd;border-radius:8px;padding:10px 12px;background:white;color:#1a3545;resize:vertical}.footnote{background:#eaf0f1;padding:16px 19px;border-radius:9px;margin-top:18px;color:#4f636d;font-size:12px;line-height:1.55}#status{min-height:21px}pre{white-space:pre-wrap;word-break:break-word}
+@media(max-width:820px){.dashboard{grid-template-columns:1fr}.footergrid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)}.pad{padding:16px}.top{padding:20px 16px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+/* Review-candidate readability changes; numerical model unchanged. */
+body{font-size:16px}label,.btn,.notice,.decision,summary,table{font-size:16px}.sub,.tiny,.intro,.edition,.ends,.stat small,.stat p,.footnote,th,.kicker,.legend{font-size:14px}.field,select{font-size:16px}select:focus-visible{outline:3px solid #e58b45;outline-offset:2px}.ends{color:#596875}.kicker{color:#7a491d}.val{color:#84451a}
+@media(max-width:820px){.svgwrap{overflow-x:auto}.svgwrap svg{min-width:650px}.statgrid{grid-template-columns:1fr}.top{flex-wrap:wrap;gap:8px}.brand{font-size:14px}}
+</style></head><body>
+<header class="top"><div class="brand">BRILLIANCE BRIDGE <span style="opacity:.53">/ RESEARCH</span></div><div class="edition">LTROI v2.3 · Digital Companion v0.2 · review candidate</div></header>
+<main class="shell"><div class="kicker">Interactive actuarial–economic laboratory</div>
+<h1>What costs less to keep on the road?</h1><p class="intro">Stress-test the <strong>synthetic</strong> two-cohort illustration from the LTROI v2.3 working paper. Change the Weibull-style recurrent-wear parameters, repair-parts expenditure and real discount rate; see how the equivalent annual <em>service-continuity cost</em> changes.</p>
+<div class="notice"><strong>Interpretation boundary:</strong> These are hypothetical assets, not UK makes or models. Outputs include acquisition, replacement and terminal resale, so this is a <strong>restricted TCO-extension EAC scenario</strong>, <em>not</em> empirical model LTROI, a complete vehicle TCO estimate, or a reliability ranking. Fuel, insurance, collision losses and warranty reimbursements are excluded.</div>
+<div class="dashboard"><section class="panel pad" aria-label="Scenario parameters"><h2>Scenario inputs</h2><p class="sub">The controls modify an illustrative deterministic model. The source default is frozen; use Reset to restore it.</p>
+<fieldset><legend>Economic assumptions</legend><div id="econ"></div></fieldset>
+<fieldset><legend>Recurrent repair intensity · Cohort A</legend><div id="acontrols"></div></fieldset>
+<fieldset><legend>Recurrent repair intensity · Cohort B</legend><div id="bcontrols"></div></fieldset>
+<fieldset><legend>Cost and downtime</legend><div id="costcontrols"></div></fieldset>
+<div class="btnrow"><button type="button" class="btn primary" id="reset">Reset to paper</button><button type="button" class="btn" id="export">Export scenario JSON</button></div><p id="status" class="tiny" role="status" aria-live="polite"></p>
+</section><section class="panel pad"><h2>Equivalent annual service-continuity cost</h2><p class="sub">Cumulative decision-horizon comparison, years 1–10. Amounts are real £/year and include date-zero acquisition and end-of-horizon resale credit.</p>
+<div class="svgwrap"><svg id="curve" viewBox="0 0 760 335" role="img" aria-label="A and B equivalent annual cost by service horizon"><title>Equivalent annual cost versus ownership horizon</title></svg></div>
+<div class="legend"><span><i class="dot a"></i>Cohort A — routine wear</span><span><i class="dot b"></i>Cohort B — shifted wear + year-eight stress</span></div>
+<div class="statgrid"><div class="stat a"><small>A · 10-year EAC</small><strong id="aEAC">—</strong><p id="aIndex">Scenario index —</p></div><div class="stat b"><small>B · 10-year EAC</small><strong id="bEAC">—</strong><p id="bIndex">Scenario index —</p></div><div class="stat"><small>Annual difference</small><strong id="gap">—</strong><p>Positive = B costs more</p></div></div>
+<div id="decision" class="decision" aria-live="polite"></div><p class="tiny">The fault at the end of year 8 is imposed with certainty in this stress scenario, not an estimated failure probability. Modelled repair/restoration and replacement decisions use a finite-horizon recursion, and changing parameters can change which action is selected.</p>
+<hr><h2>Failure intensity and repair effect</h2><p class="sub">Expected recurrent repair events per vehicle-year, before the separate imposed fault. B's effective age resets following replacement.</p><div class="svgwrap"><svg id="events" viewBox="0 0 760 240" role="img" aria-label="Synthetic expected routine events per year for A and B"><title>Recurrent repair events per year</title></svg></div>
+<details><summary>See annual cash-flow ledger and reconciliation</summary><div style="overflow-x:auto"><table><thead><tr><th>Year</th><th>A annual £</th><th>B annual £</th><th>A events</th><th>B events</th><th>B decision</th></tr></thead><tbody id="ledger"></tbody></table></div><p id="reconcile" class="tiny"></p></details>
+</section></div>
+<div class="footergrid"><section class="panel pad"><h2>Export methodological feedback</h2><p class="sub">This offline preview cannot transmit or store submissions. Enter a comment and export the note for later sending to the researcher. No endpoint is required for this local-download workflow. A future transmitting form would need a separately approved endpoint and privacy notice.</p>
+<label for="audience">Perspective</label><select class="field" id="audience"><option>Actuarial / insurance</option><option>Fleet operations</option><option>Automotive economics</option><option>Reliability engineering</option><option>Other</option></select>
+<label for="feedback" style="margin-top:13px">Assumptions, bugs or methodological critique</label><textarea id="feedback" class="field" rows="4" placeholder="Which decision assumption or accounting boundary should be challenged? No personal information required."></textarea><div class="btnrow" style="margin-top:11px"><button type="button" class="btn primary" id="saveFeedback">Download feedback note</button></div><p class="tiny">No email address is collected, and no data leaves your browser in this prototype.</p></section>
+<section class="panel pad"><h2>Research and reproduction</h2><p class="sub">The scientific release should permit public scrutiny of the core reproducibility script independently of a marketing opt-in. Optional lead capture for supplementary practitioner materials is a separate, consent-based workflow.</p><p class="tiny"><strong>Source:</strong> Aaron Christopher, <em>Discounted Automotive Ownership Risk: An Actuarial–Economic Framework (LTROI v2.3)</em>, research-circulation edition, October 2026. This demonstration uses the published synthetic parameters. No empirical model rankings are inferred.</p><p class="tiny"><strong>Limitations:</strong> Stationary fixed charges, parameterised minimal repairs, simplified resale curve and a constrained year-eight fault decision. No stochastic severity distributions, observed repair invoices, cohort denominators or model validation.</p><button type="button" class="btn" id="method">Download methodology/readme</button></section></div>
+<div class="footnote">Research prototype — not yet hosted on brilliancebridge.co.uk. Before publication: confirm author authority and hosting approval. This candidate contains only synthetic scenarios; no source-derived warranty dataset is included. Feedback remains a local download, with no analytics or email capture. Hosting providers may still process ordinary access logs. The original frozen v2.3 calculation remains unmodified.</div>
+</main>
+<script>
+/* LTROI v2.3 digital companion, illustrative synthetic deterministic model.
+   Standard-library-independent pure functions; NOT empirical vehicle estimates.
+   The displayed index is EAC of a restricted service-continuity TCO, not core LTROI.
+*/
+(function(root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.LTROI = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+  'use strict';
+  const DEFAULTS = Object.freeze({
+    discount: 0.035, purchase: 3000, residualHalfLife: 8,
+    aBeta: 1.4, aTheta: 10, aFixed: 600, aParts: 150, aLabourHours: 1,
+    aLabourRate: 60, aAncillary: 20, aDowntime: 0,
+    bBeta: 2.5, bTheta: 5, bStart: 6, bBaseline: 0.03,
+    bFixed: 800, bParts: 300, bLabourHours: 2, bLabourRate: 70,
+    bAncillary: 50, bDowntimeDays: 3, bSubCost: 30,
+    partsMultiplier: 1, faultYear: 8, repairQuote: 4000,
+    repairDowntime: 180, damagedSalvage: 300,
+    replacementPrice: 3000, transactionCost: 150, replacementDowntime: 90
+  });
+  function validate(p) {
+    for(const [k, v] of Object.entries(p)) {
+      if(typeof v !== 'number' || !Number.isFinite(v)) throw new Error('Non-finite input: '+k);
+    }
+    if(p.discount < 0 || p.discount > 0.5) throw new Error('Discount rate outside supported 0–50% domain');
+    for (const k of ['aBeta','aTheta','bBeta','bTheta','residualHalfLife']) {
+      if (p[k] <= 0) throw new Error(k+' must be positive');
+    }
+    for (const k of ['aFixed','aParts','aLabourHours','aLabourRate','aAncillary','aDowntime',
+      'bFixed','bParts','bLabourHours','bLabourRate','bAncillary','bDowntimeDays','bSubCost',
+      'bBaseline','partsMultiplier','purchase','repairQuote','repairDowntime','damagedSalvage',
+      'replacementPrice','transactionCost','replacementDowntime']) {
+      if (p[k] < 0) throw new Error(k+' must not be negative');
+    }
+    if(!Number.isInteger(p.faultYear) || p.faultYear < 1) throw new Error('fault year invalid');
+    return p;
+  }
+  function normalize(input={}) {return validate({...DEFAULTS,...input});}
+  function severity(c,p) {
+    return c==='A' ? p.aParts*p.partsMultiplier+p.aLabourHours*p.aLabourRate+p.aAncillary+p.aDowntime
+      : p.bParts*p.partsMultiplier+p.bLabourHours*p.bLabourRate+p.bAncillary+p.bDowntimeDays*p.bSubCost;
+  }
+  function events(c,age,p) {
+    if(c==='A') return Math.pow((age+1)/p.aTheta,p.aBeta)-Math.pow(age/p.aTheta,p.aBeta);
+    const q = (x)=> Math.pow(Math.max(x-p.bStart,0)/p.bTheta,p.bBeta);
+    return p.bBaseline+q(age+1)-q(age);
+  }
+  function resale(age,p) {return p.purchase*Math.pow(2,-age/p.residualHalfLife);}
+  function annuity(h,p) {const d=1/(1+p.discount);let s=0;for(let t=1;t<=h;t++) s+=Math.pow(d,t);return s;}
+  // Backward induction, with end-year c_t valued at t (same timing as manuscript).
+  function solve(c,h,input={}) {
+    const p=normalize(input);
+    if(!Number.isInteger(h)||h<1||h>30) throw new Error('Horizon must be an integer from 1 to 30');
+    const d=1/(1+p.discount);const cache=new Map();const actions={};
+    const key=(t,a)=>t+'|'+a;
+    function dp(t,age) {
+      if(t===h+1) return -resale(age,p);
+      const k=key(t,age);if(cache.has(k))return cache.get(k);
+      const run=(c==='A'?p.aFixed:p.bFixed)+events(c,age,p)*severity(c,p);
+      let next;
+      if(c==='B' && t===p.faultYear){
+        const repair=p.repairQuote+p.repairDowntime+dp(t+1,age+1);
+        const replacement=p.replacementPrice-p.damagedSalvage+p.transactionCost+p.replacementDowntime+dp(t+1,0);
+        const action=repair<=replacement?'repair':'replace';
+        actions[t]={action,repairContinuation:repair,replacementContinuation:replacement};
+        next=action==='repair'?repair:replacement;
+      } else next=dp(t+1,age+1);
+      const result=d*(run+next);cache.set(k,result);return result;
+    }
+    const pv=p.purchase+dp(1,0);let age=0;let npv=p.purchase;
+    const rows=[];
+    for(let t=1;t<=h;t++){
+      const n=events(c,age,p);const routine=n*severity(c,p);
+      let action='keep',decisionCost=0;
+      if(c==='B' && t===p.faultYear) {
+        action=actions[t].action;
+        decisionCost=action==='repair'?p.repairQuote+p.repairDowntime:
+          p.replacementPrice-p.damagedSalvage+p.transactionCost+p.replacementDowntime;
+      }
+      const annual=(c==='A'?p.aFixed:p.bFixed)+routine+decisionCost;
+      rows.push({cohort:c,year:t,ageStart:age,events:n,routine,decisionCost,annual,action});
+      npv+=Math.pow(d,t)*annual;
+      age=action==='replace'?0:age+1;
+    }
+    const terminal=resale(age,p);npv-=Math.pow(d,h)*terminal;
+    const delta=Math.abs(pv-npv);
+    if(delta>1e-7)throw new Error('Forward / backward mismatch: '+delta);
+    const a=annuity(h,p);
+    return {cohort:c,h,pv,eac:pv/a,scenarioIndex:10000/(pv/a),annuity:a,
+      terminal,decision:actions[p.faultYear]||null,rows,forwardBackwardDelta:delta};
+  }
+  function compare(input={},h=10) {const p=normalize(input);return {a:solve('A',h,p),b:solve('B',h,p),p};}
+  return {DEFAULTS,normalize,events,severity,resale,annuity,solve,compare};
+});
+
+</script><script>
+(function(){'use strict';
+ const $=s=>document.querySelector(s), M=window.LTROI, state={...M.DEFAULTS};
+ const spec=[
+ ['econ','discount','Real discount rate',0,10,.1,'percent'],
+ ['acontrols','aBeta','A · wear shape β',.7,3,.05,'number'],['acontrols','aTheta','A · wear scale θ (years)',4,20,.25,'number'],
+ ['bcontrols','bBeta','B · shifted wear shape β',.7,4,.05,'number'],['bcontrols','bTheta','B · wear scale θ (years)',2,12,.25,'number'],['bcontrols','bStart','B · wear begins at age',0,9,.5,'number'],
+ ['costcontrols','partsMultiplier','Parts expenditure multiplier',.5,3,.05,'multiple'],['costcontrols','bDowntimeDays','B · distinct unusable days',0,10,1,'days'],['costcontrols','repairQuote','Year-8 restore quote (£)',500,7000,100,'money']
+ ];
+ const format=(n,d=0)=>new Intl.NumberFormat('en-GB',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
+ const money=n=>'£'+format(n,0);const valText=(s,v)=>s[6]==='percent'?format(v*100,1)+'%':s[6]==='multiple'?format(v,2)+'×':s[6]==='money'?money(v):s[6]==='days'?v+' days':format(v,2);
+ spec.forEach(s=>{const host=$('#'+s[0]),wrap=document.createElement('div');wrap.className='control';const id='range_'+s[1];const initial=s[6]==='percent'?state[s[1]]*100:state[s[1]];
+ wrap.innerHTML=`<label for="${id}"><span>${s[2]}</span><output class="val" id="out_${s[1]}"></output></label><input type="range" id="${id}" min="${s[3]}" max="${s[4]}" step="${s[5]}" value="${initial}"/><div class="ends"><span>${s[3]}</span><span>${s[4]}</span></div>`;
+ host.appendChild(wrap);const elem=$('#'+id);elem.addEventListener('input',()=>{state[s[1]]=Number(elem.value)/(s[6]==='percent'?100:1);render();});});
+ function plot(svg, arrays, fmt, ylabel){
+  const W=760,H=Number(svg.getAttribute('viewBox').split(' ')[3]),pad={l:76,r:18,t:24,b:42};const all=arrays.flatMap(x=>x.y),max=Math.max(...all,1e-4)*1.16,min=0;
+  const x=i=>pad.l+i*(W-pad.l-pad.r)/9, y=v=>pad.t+(max-v)/(max-min)*(H-pad.t-pad.b);
+  const parts=[`<rect x="0" y="0" width="760" height="${H}" fill="#fbfdfd"/>`];
+  for(let i=0;i<=4;i++){const v=max*i/4, yy=y(v);parts.push(`<line x1="${pad.l}" x2="${W-pad.r}" y1="${yy}" y2="${yy}" stroke="#dce7ea"/><text x="${pad.l-10}" y="${yy+4}" text-anchor="end" font-size="16" fill="#607583">${fmt(v)}</text>`);}
+  for(let i=0;i<10;i++)parts.push(`<text x="${x(i)}" y="${H-16}" text-anchor="middle" font-size="16" fill="#6d7e8b">${i+1}</text>`);
+  parts.push(`<text x="${pad.l}" y="13" font-size="16" font-weight="700" fill="#617783">${ylabel}</text>`);
+  arrays.forEach(series=>{const line=series.y.map((v,i)=>(i?'L':'M')+x(i).toFixed(2)+','+y(v).toFixed(2)).join(' ');
+   parts.push(`<path d="${line}" fill="none" stroke="${series.color}" stroke-width="3" stroke-linecap="round"/>`);
+   series.y.forEach((v,i)=>parts.push(`<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${series.color}"/>`));});
+  svg.innerHTML=parts.join('');
+ }
+ function render(){
+  spec.forEach(s=>{const v=state[s[1]];$('#out_'+s[1]).textContent=valText(s,v);});
+  try{
+   const a10=M.solve('A',10,state),b10=M.solve('B',10,state);
+   $('#aEAC').textContent=money(a10.eac);$('#bEAC').textContent=money(b10.eac);$('#gap').textContent=money(b10.eac-a10.eac);
+   $('#aIndex').textContent='Illustrative index '+format(a10.scenarioIndex,2);$('#bIndex').textContent='Illustrative index '+format(b10.scenarioIndex,2);
+   const A=[],B=[];for(let h=1;h<=10;h++){A.push(M.solve('A',h,state).eac);B.push(M.solve('B',h,state).eac);}
+   plot($('#curve'),[{y:A,color:'#3a83b7'},{y:B,color:'#e58b45'}],v=>money(v),'Real £/year');
+   plot($('#events'),[{y:a10.rows.map(x=>x.events),color:'#3a83b7'},{y:b10.rows.map(x=>x.events),color:'#e58b45'}],v=>format(v,2),'Expected repair events/vehicle-year');
+   const choice=b10.decision;$('#decision').innerHTML=choice?`<strong>Year 8: ${choice.action.toUpperCase()}</strong> is selected for B, using remaining-horizon values (restore ${money(choice.repairContinuation)}, replace ${money(choice.replacementContinuation)}).<br><span class="muted">Amounts combine the action's current expenditure and discounted continuation including resale; they are not repair invoices.</span>`:'No stress decision in this horizon.';
+   $('#ledger').innerHTML=a10.rows.map((a,i)=>{const b=b10.rows[i];return `<tr><td>${a.year}</td><td>${money(a.annual)}</td><td>${money(b.annual)}</td><td>${format(a.events,3)}</td><td>${format(b.events,3)}</td><td>${b.action}</td></tr>`;}).join('');
+   $('#reconcile').textContent=`A and B forward/backward present values reconcile to better than £0.0000001. Terminal resale is credited once at year ten. A's expected event count over ten years = ${format(a10.rows.reduce((s,x)=>s+x.events,0),3)}.`;
+   $('#status').textContent='Scenario updated — not an empirical estimate.';
+  }catch(e){$('#status').textContent='Model error: '+e.message;}
+ }
+ function download(content,name,type){const blob=new Blob([content],{type:type||'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+ $('#reset').addEventListener('click',()=>{Object.assign(state,M.DEFAULTS);spec.forEach(s=>$('#range_'+s[1]).value=s[6]==='percent'?state[s[1]]*100:state[s[1]]);render();});
+ $('#export').addEventListener('click',()=>download(JSON.stringify({name:'LTROI v2.3 synthetic interactive scenario',params:state,scope:'restricted TCO scenario; not core LTROI or empirical',results:{A:M.solve('A',10,state),B:M.solve('B',10,state)}},null,2),'ltroi_synthetic_scenario.json','application/json'));
+ $('#saveFeedback').addEventListener('click',()=>{const note=`LTROI v2.3 digital companion feedback\nPerspective: ${$('#audience').value}\nComment: ${$('#feedback').value}\nParameters: ${JSON.stringify(state)}\nNo contact details collected in the prototype.\n`;download(note,'ltroi_feedback_note.txt');});
+ $('#method').addEventListener('click',()=>download('LTROI DIGITAL COMPANION v0.2 — review candidate\nBased on research-circulation manuscript v2.3 by Aaron Christopher.\nSee README.md in the release ZIP for full derivation and restrictions.\nSynthetic deterministic expected-cost model, no external dependencies.\nNo empirical vehicle selection advice.\n','LTROI_companion_methodology.txt'));
+ render();
+})();
+</script></body></html>

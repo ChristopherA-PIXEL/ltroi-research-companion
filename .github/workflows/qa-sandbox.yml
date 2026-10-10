@@ -1,0 +1,19 @@
+name: QA sandbox and ingestion fixtures
+on:
+  pull_request:
+  push:
+    branches: [qa/vercel-synthetic-v2.3]
+jobs:
+  source-and-ingestion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - run: cmp qa-site/index.html docs/v2.3/index.html
+      - run: node --test docs/v2.3/test_model.cjs
+      - run: node docs/v2.3/check_ui.cjs
+      - run: python -m unittest discover -s tests -p 'test_ccbp.py'
+      - run: python -m json.tool data/simulation_parameters.json >/dev/null
