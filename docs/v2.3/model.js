@@ -93,5 +93,3 @@
   function compare(input={},h=10) {const p=normalize(input);return {a:solve('A',h,p),b:solve('B',h,p),p};}
   return {DEFAULTS,normalize,events,severity,resale,annuity,solve,compare};
 });
-
-

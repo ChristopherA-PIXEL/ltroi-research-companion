@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const dir = __dirname;
+const html = fs.readFileSync(path.join(dir,'index.html'), 'utf8');
+const scriptBodies = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+assert.equal(scriptBodies.length, 2, 'Expected bundled model + browser UI scripts');
+for (const [i, code] of scriptBodies.entries()) new vm.Script(code, {filename: `inline-${i}.js`});
+assert.equal(scriptBodies[0].trim(), fs.readFileSync(path.join(dir,'model.js'),'utf8').trim(), 'Embedded model differs from standalone');
+console.log('Browser-script syntax and embedded model consistency passed');
