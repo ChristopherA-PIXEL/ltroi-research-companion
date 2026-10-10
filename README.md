@@ -1,7 +1,7 @@
 # LTROI Research Companion — synthetic-only v0.2
 
 **Aaron Christopher | Brilliance Bridge (research affiliation)**  
-**Release candidate:** `companion-v0.2.0` — a synthetic-only research companion, not a fitted automotive reliability ranking or commercial fleet-pricing service. The code repository is public; [a separate Vercel research QA deployment](https://ltroi-synthetic-mobile-ac89mb9t2-aceaaronchristopher-6447.vercel.app) is available. The complete frozen working-paper PDF and empirical warranty-data reproducibility ZIP are not distributed here. The GitHub tag, release and Zenodo DOI are **pending Zenodo activation and the final release gate**.
+**Published software:** [`companion-v0.2.0`](https://github.com/ChristopherA-PIXEL/ltroi-research-companion/releases/tag/companion-v0.2.0) — a synthetic-only research companion with permanent [software DOI **10.5281/zenodo.23279193**](https://doi.org/10.5281/zenodo.23279193). This is not an empirical reliability ranking or commercial pricing engine. The separate [Vercel research companion](https://ltroi-synthetic-mobile-ac89mb9t2-aceaaronchristopher-6447.vercel.app) is for non-commercial methods review. The frozen full working-paper PDF and provider-derived empirical ZIP are **not** published here.
 
 This project explores a proposed long-term resilience and ownership index (LTROI) methodology through *two hypothetical vehicle cohorts*. The browser interface provides a restricted synthetic service-continuity total-cost-of-ownership (TCO) extension, not cohort-specific measured reliability or a complete owner-cost forecast. User changes in wear parameters, parts cost, downtime and discount rate do not constitute validated empirical parameter estimates.
 
@@ -49,4 +49,16 @@ The approved companion code was reconciled byte-for-byte to the author's v0.2 ZI
 
 The isolated Vercel research QA site is **not** the Brilliance Bridge commercial site and has no email capture, analytics or transmitted feedback. Hosting account access controls and provider-side access logs are outside the page's local JavaScript claims.
 
-**Final archival dependency:** Before creating `companion-v0.2.0` or publishing a GitHub Release, the author must verify that their GitHub account is connected to Zenodo and that **this exact repository** is enabled in the Zenodo GitHub dashboard. The GitHub Release must then be published and Zenodo's actual archival record, metadata, licence scope and DOI confirmed. A Git tag by itself is not proof that Zenodo has archived a release. The tag and DOI do not yet exist at the time these release-preparation notes were drafted.
+**Archived software:** Version [`companion-v0.2.0`](https://github.com/ChristopherA-PIXEL/ltroi-research-companion/releases/tag/companion-v0.2.0) was published on 10 October 2026 with Zenodo software record [10.5281/zenodo.23279193](https://doi.org/10.5281/zenodo.23279193). This software DOI must not be cited as publication or independent empirical validation of the separately held full research manuscript. The original release tag is immutable for scientific referencing; post-release README corrections on `main` do not alter that archived tagged snapshot.
+
+## Open request for methodological critique
+
+This project **welcomes falsifiable peer criticism**, not unreviewed endorsements. Select the forum suited to your expertise:
+
+- **[Actuarial methods (#6)](https://github.com/ChristopherA-PIXEL/ltroi-research-companion/issues/6):** discounted Bellman accounting, Poisson-thinned paid-claim assumptions, Bühlmann–Straub cohort credibility and identification.
+- **[Reliability engineering (#7)](https://github.com/ChristopherA-PIXEL/ltroi-research-companion/issues/7):** recurrent repairs versus first failures, Weibull assumptions, virtual age, replacement/reset state and stochastic exposure.
+- **[Fleet procurement (#8)](https://github.com/ChristopherA-PIXEL/ltroi-research-companion/issues/8):** distinct unusable days, recoveries, substitute vehicles, data availability and repair-versus-replace feasibility.
+
+For a useful critique, include the **specific assumption or code line, a synthetic counterexample or reliable reference, the likely consequence, and a proposed test**. All participation is voluntary and public. Do not submit confidential fleet/customer information, individual personal data or proprietary warranty datasets. There is no web form, email capture, submitted-feedback analytics, or implied marketing contact consent. The paper's more general credibility and deductible models are theoretical proposals, **not implemented** in this published toy calculator.
+
+Software DOI: **https://doi.org/10.5281/zenodo.23279193**.
