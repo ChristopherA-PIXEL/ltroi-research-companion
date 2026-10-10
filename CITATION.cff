@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use the synthetic interactive companion, please cite this software. Cite the v2.3 working paper separately."
+type: software
+title: "LTROI Synthetic Research Companion"
+version: "0.2.0"
+authors:
+  - family-names: "Christopher"
+    given-names: "Aaron"
+    affiliation: "Brilliance Bridge"
+repository-code: "https://github.com/ChristopherA-PIXEL/ltroi-research-companion"
+url: "https://ltroi-synthetic-mobile-ac89mb9t2-aceaaronchristopher-6447.vercel.app"
+abstract: >-
+  Synthetic-only interactive actuarial-economic companion demonstrating
+  finite-horizon repair-versus-replace service-continuity calculations
+  for two hypothetical vehicle cohorts. Source code is MIT licensed;
+  original documentation and synthetic diagrams are CC BY 4.0;
+  Brilliance Bridge trademarks and branding remain reserved.
+  No proprietary warranty provider data, model rankings or empirical
+  lifetime LTROI estimates are included.
+keywords:
+  - actuarial science
+  - reliability engineering
+  - synthetic modelling
+  - automotive economics
+  - finite horizon optimisation
