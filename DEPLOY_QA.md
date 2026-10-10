@@ -1,8 +1,8 @@
 # Temporary Vercel QA preview — not a scientific release
 
-**Status: ready for Vercel connection, not deployed.** The Vercel preview is solely a phone/browser smoke test for the exact approved v0.2 synthetic calculator. Do not enable production domains or deploy the frozen empirical PDF and original ZIP.
+**Status: standalone Vercel research QA instance READY at https://ltroi-synthetic-mobile-ac89mb9t2-aceaaronchristopher-6447.vercel.app ; author reports 9/9 Galaxy S25 Ultra checks PASS (10 October 2026). This is a separate, isolated Vercel project, deployed by direct static-file upload, not by GitHub linking.** The Vercel preview is solely a phone/browser smoke test for the exact approved v0.2 synthetic calculator. Do not enable production domains or deploy the frozen empirical PDF and original ZIP.
 
-## Deployment settings
+## Reference instructions for future Git-linked deployment (not the method used for current QA site)
 
 1. Connect Vercel to the account and import the GitHub repo `ChristopherA-PIXEL/ltroi-research-companion`.
 2. Set **Framework Preset: Other**, repository **Root Directory: /**, Build Command **none**, Output Directory **qa-site** (also specified by `vercel.json` in the root).
@@ -24,3 +24,5 @@ Use current Chrome and Samsung Internet, portrait and landscape. Include 100%, 1
 - Check visible focus, contrast and screen reader labels with TalkBack. These mobile/manual checks cannot be certified from the code alone.
 
 Record browser/app versions, CSS viewport dimensions, date, screenshots, failures, corrected commit SHA, and whether the same URL was retested after fixes. Do not mark the mobile gate passed solely because CI succeeds.
+## Recorded actual-device result — 10 October 2026
+The author tested Chrome and Samsung Internet on a Galaxy S25 Ultra and reported PASS for readability, portrait and landscape layout, slider updates, correct reset totals, Cohort B's year-eight replacement, downloads, larger text and TalkBack. No independent browser/automated WCAG audit is asserted. Keep the test as user-reported acceptance rather than asserting that the deprecated Git-linked instructions above were completed.
